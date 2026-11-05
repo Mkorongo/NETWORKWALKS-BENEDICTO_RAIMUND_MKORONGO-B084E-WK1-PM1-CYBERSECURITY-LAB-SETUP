@@ -88,11 +88,11 @@ The lab runs on a private virtual network (`10.0.0.0/24`) so more machines (Wind
 
 | Item | Details |
 |------|---------|
-| Main OS | Windows *(add your version)* |
-| RAM | *(e.g., 8 GB or more)* |
-| Storage | *(e.g., 256 GB SSD or more)* |
-| Processor | *(e.g., Core i3 / i5 or similar)* |
-| Virtualization | Hypervisor: Oracle VirtualBox 7.x |
+| Main OS | Windows 10 |
+| RAM | 8 GB |
+| Storage |, 256 GB SSD  |
+| Processor |  Core  i5  |
+| Virtualization | Hypervisor: Oracle VirtualBox 7. |
 
 > Recommended minimum: 8 GB RAM, 256 GB SSD, Core i3/i5 processor.
 
@@ -107,10 +107,6 @@ The lab runs on a private virtual network (`10.0.0.0/24`) so more machines (Wind
 - Download: https://7-zip.org/download.html
 - Run the installer and finish with the default options.
 
-📸 `screenshots/01-7zip-installed.png`
-
-![7-Zip installed](screenshots/01-7zip-installed.png)
-
 ---
 
 ### Step 2 — Download & install VirtualBox
@@ -118,10 +114,6 @@ The lab runs on a private virtual network (`10.0.0.0/24`) so more machines (Wind
 - Download the latest version for your host OS: https://virtualbox.org/wiki/Downloads
 - Install it with the default options (accept the network driver prompts).
 - Open VirtualBox and confirm it launches properly.
-
-📸 `screenshots/02-virtualbox-installed.png`
-
-![VirtualBox installed](screenshots/02-virtualbox-installed.png)
 
 ---
 
@@ -139,11 +131,6 @@ The lab runs on a private virtual network (`10.0.0.0/24`) so more machines (Wind
 | Enable IPv6 | ❌ Unchecked |
 
 4. Click **Apply**.
-
-📸 `screenshots/03-natnetwork-created.png`
-
-![NAT Network created](screenshots/03-natnetwork-created.png)
-
 ---
 
 ### Step 4 — Download & import the Kali Linux VM
@@ -152,10 +139,6 @@ The lab runs on a private virtual network (`10.0.0.0/24`) so more machines (Wind
 2. Download the archive and extract it with 7-Zip.
 3. Double-click the `.vbox` file (or use **Machine → Add**) to import it into VirtualBox.
 4. Confirm the VM appears in the VirtualBox Manager list.
-
-📸 `screenshots/04-kali-imported.png`
-
-![Kali imported](screenshots/04-kali-imported.png)
 
 ---
 
@@ -174,20 +157,12 @@ Open the Kali VM **Settings → Network → Adapter 1**:
 | Promiscuous Mode | `Allow All` |
 | Cable Connected | ✅ |
 
-📸 `screenshots/05-kali-network-adapter.png`
-
-![Kali network adapter](screenshots/05-kali-network-adapter.png)
-
 #### 5.2 Clipboard & drag/drop
 
 Open **Settings → General → Advanced**:
 
 - **Shared Clipboard:** `Bidirectional`
 - **Drag'n'Drop:** `Bidirectional`
-
-📸 `screenshots/06-clipboard-dragdrop.png`
-
-![Clipboard and drag and drop](screenshots/06-clipboard-dragdrop.png)
 
 #### 5.3 Shared folder (host `Downloads`)
 
@@ -207,11 +182,6 @@ Inside Kali, to access the shared folder (usually mounted at `/media/sf_Download
 sudo usermod -aG vboxsf $USER
 sudo reboot
 ```
-
-📸 `screenshots/07-shared-folder.png`
-
-![Shared folder](screenshots/07-shared-folder.png)
-
 ---
 
 ### Step 6 — Set the static IP on Kali (`10.0.0.2/24`)
@@ -229,10 +199,6 @@ sudo reboot
 | DNS servers | `8.8.8.8` *(use `10.0.0.1` if Internet gives issues)* |
 
 4. Click **Save**, then disconnect/reconnect the network.
-
-📸 `screenshots/08-kali-static-ip.png`
-
-![Kali static IP](screenshots/08-kali-static-ip.png)
 
 ---
 
@@ -259,10 +225,6 @@ ping -c 4 google.com
 
 **Expected result:** Kali shows `10.0.0.2/24`, and all pings succeed with 0% packet loss.
 
-📸 `screenshots/09-ip-and-ping-test.png`
-
-![IP and ping test](screenshots/09-ip-and-ping-test.png)
-
 ---
 
 ### Step 8 — Take a snapshot
@@ -273,45 +235,11 @@ Taking a snapshot lets me restore the VM to this clean, working state at any tim
 2. In VirtualBox Manager select the Kali VM → **Snapshots** tab → **Take**.
 3. Name it something clear, e.g. `Fresh Kali - Lab Setup Complete`.
 
-📸 `screenshots/10-snapshot.png`
-
-![Snapshot taken](screenshots/10-snapshot.png)
-
 ---
-
-## 🧰 Troubleshooting
-
-### Problem: Kali VM has no Internet after setting the static IP
-
-This is a known issue with VirtualBox v7 and Kali Linux 2026.1 or newer. The cause is the IPv4 duplicate-address-detection (DAD) timeout in NetworkManager.
-
-**Checklist**
-
-1. Confirm the NAT Network was created correctly (`10.0.0.0/24`, DHCP enabled).
-2. Confirm all network settings on the VM and in Kali are correct.
-3. Make sure no other VM on the same NAT Network is using `10.0.0.2`.
-4. Check that the host firewall / antivirus is not blocking traffic.
-5. Change DNS to `8.8.8.8`, then to `10.0.0.1`, and test each.
-6. Run the fix commands below and restart Kali.
-7. Restart the VMs and the host OS.
-
-**Fix commands**
-
-```bash
-sudo nmcli connection modify "Wired connection 1" ipv4.dad-timeout 0
-sudo nmcli connection down "Wired connection 1"
-sudo nmcli connection up "Wired connection 1"
-```
-
-Then restart Kali Linux and test again with `ping 8.8.8.8`.
 
 ### 📝 My own troubleshooting experience
 
-> **Problem I faced:** *(write the real problem you had, e.g. "Kali had no Internet after setting the static IP")*
->
-> **How I solved it:** *(write exactly what you did to fix it)*
-
-*(If you had no problems, replace this with a short note about how you helped others in the YouTube comments.)*
+> **Problem I faced:** No problem i faced
 
 ---
 
@@ -337,14 +265,6 @@ Then restart Kali Linux and test again with `ping 8.8.8.8`.
 
 ---
 
-## 🚀 Next Steps (Phase 2 – Optional)
-
-- Install Windows 11 / 10 / 7 / Android 9x as target VMs on the same `NatNetwork`
-- Assign the planned static IPs and ping-test all machines from each other
-- Take a snapshot of every VM
-
----
-
 ## ⚖️ Legal Disclaimer
 
 This project is for **education and research purposes only**. The aim is to understand how attacks work so systems can be defended better.
@@ -361,11 +281,11 @@ Everything outside these cases is illegal. All work in this repository was done 
 
 ## 👤 Author
 
-**Name:** *(Your full name)*
+**Name:** BENEDICTO RAIMUND MKORONGO
 **Program:** Networkwalks Cybersecurity Internship — Batch B084E
 **Project:** Week 1 · PM1 · Cybersecurity Lab Setup
 **Instructor:** Waqas Karim (CCIE)
-**LinkedIn:** *(your LinkedIn profile link)*
+**LinkedIn:** www.linkedin.com/in/benedicto-mkorongo-b7a5b9446
 
 ---
 
