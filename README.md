@@ -230,6 +230,8 @@ Taking a snapshot lets me restore the VM to this clean, working state at any tim
 - Clean snapshot saved
 
 ---
+![Uploading kali post.png…]()
+
 
 ## 📚 What I Learned
 
