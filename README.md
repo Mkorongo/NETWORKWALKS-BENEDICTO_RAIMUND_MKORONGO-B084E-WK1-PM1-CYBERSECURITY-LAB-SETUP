@@ -19,7 +19,7 @@
 
 ## 📌 Project Overview
 
-This project is **Week 1, Project Module 1 (WK1-PM1)** of the Networkwalks Cybersecurity Internship Program (Batch B084E).
+This project is **Week 1, Project Module 1 (WK1-PM1)** of the Cybersecurity Internship Program (Batch B084E).
 
 The goal is to set up a **virtual cybersecurity and penetration-testing laboratory** using **VirtualBox** and **Kali Linux**.
 
@@ -46,30 +46,6 @@ The lab runs on a private virtual network (`10.0.0.0/24`) so more machines (Wind
 | 9 | Snapshot of the VM taken | ✅ |
 
 ---
-
-## 🗺️ Lab Architecture
-
-```
-┌──────────────────────────────────────────────────────────┐
-│  Host Machine (Main OS: Windows)                         │
-│                                                          │
-│   ┌──────────────────────────────────────────────────┐   │
-│   │  Oracle VirtualBox                               │   │
-│   │                                                  │   │
-│   │   NAT Network: "NatNetwork"  →  10.0.0.0/24      │   │
-│   │   Gateway: 10.0.0.1   DHCP: Enabled              │   │
-│   │                                                  │   │
-│   │   ┌────────────────────────────┐                 │   │
-│   │   │  Kali Linux 2026.2         │                 │   │
-│   │   │  Attacker machine          │                 │   │
-│   │   │  IP: 10.0.0.2/24 (manual)  │                 │   │
-│   │   └────────────────────────────┘                 │   │
-│   │                                                  │   │
-│   │   (Future targets – optional, Phase 2)           │   │
-│   │   Windows 11 / 10 / 7 / Server 2016 / Android    │   │
-│   └──────────────────────────────────────────────────┘   │
-└──────────────────────────────────────────────────────────┘
-```
 
 ### Planned IP Addressing (all on `NatNetwork`, range `10.0.0.2 – 10.0.0.99 /24`)
 
@@ -100,7 +76,7 @@ The lab runs on a private virtual network (`10.0.0.0/24`) so more machines (Wind
 
 ## 🛠️ Step-by-Step Setup (Phase 1)
 
-### Step 1 — Download & install 7-Zip
+### Step 1 Download & install 7-Zip
 
 7-Zip is needed to extract the compressed Kali Linux VM archive.
 
@@ -109,7 +85,7 @@ The lab runs on a private virtual network (`10.0.0.0/24`) so more machines (Wind
 
 ---
 
-### Step 2 — Download & install VirtualBox
+### Step 2 Download & install VirtualBox
 
 - Download the latest version for your host OS: https://virtualbox.org/wiki/Downloads
 - Install it with the default options (accept the network driver prompts).
@@ -117,7 +93,7 @@ The lab runs on a private virtual network (`10.0.0.0/24`) so more machines (Wind
 
 ---
 
-### Step 3 — Create the NAT Network (`10.0.0.0/24`)
+### Step 3 Create the NAT Network (`10.0.0.0/24`)
 
 1. In VirtualBox go to **File → Tools → Network** (shortcut `Ctrl + H`).
 2. Open the **NAT Networks** tab and click **Create**.
@@ -133,7 +109,7 @@ The lab runs on a private virtual network (`10.0.0.0/24`) so more machines (Wind
 4. Click **Apply**.
 ---
 
-### Step 4 — Download & import the Kali Linux VM
+### Step 4 Download & import the Kali Linux VM
 
 1. Go to https://kali.org/get-kali and choose **Virtual Machines → VirtualBox (64-bit)**.
 2. Download the archive and extract it with 7-Zip.
@@ -142,7 +118,7 @@ The lab runs on a private virtual network (`10.0.0.0/24`) so more machines (Wind
 
 ---
 
-### Step 5 — Configure Kali VM settings
+### Step 5 Configure Kali VM settings
 
 #### 5.1 Network adapter
 
@@ -184,7 +160,7 @@ sudo reboot
 ```
 ---
 
-### Step 6 — Set the static IP on Kali (`10.0.0.2/24`)
+### Step 6 Set the static IP on Kali (`10.0.0.2/24`)
 
 1. Start the Kali VM and log in.
 2. Click the network icon in the top-right panel → **Edit Connections…**
@@ -202,7 +178,7 @@ sudo reboot
 
 ---
 
-### Step 7 — Verify the configuration
+### Step 7 Verify the configuration
 
 Run these commands in the Kali terminal:
 
@@ -227,7 +203,7 @@ ping -c 4 google.com
 
 ---
 
-### Step 8 — Take a snapshot
+### Step 8 Take a snapshot
 
 Taking a snapshot lets me restore the VM to this clean, working state at any time.
 
@@ -282,7 +258,7 @@ Everything outside these cases is illegal. All work in this repository was done 
 ## 👤 Author
 
 **Name:** BENEDICTO RAIMUND MKORONGO
-**Program:** Networkwalks Cybersecurity Internship — Batch B084E
+**Program:** Cybersecurity Internship — Batch B084E
 **Project:** Week 1 · PM1 · Cybersecurity Lab Setup
 **Instructor:** Waqas Karim (CCIE)
 **LinkedIn:** www.linkedin.com/in/benedicto-mkorongo-b7a5b9446
